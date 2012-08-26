@@ -4,7 +4,9 @@ The Manifesto:
 
 >It is Communist prime role to serve community by providing Cucumber steps for
 >testing external API calls from command line applications. To meet this aim
->the Communist employees Sinatra DSL for mocking server responses.
+>the Communist employees Sinatra DSL for mocking server responses. The Communist
+>server receives requests from CLI and provides an API to respond to those
+>requests. Canned answers/exectations have to provided upfront.
 
 ## Installation
 
