@@ -76,8 +76,17 @@ module Communist
       self
     end
 
+    # Stops the server after handling the connection.
+    # Attempts to stop the server gracefully, otherwise
+    # shuts current connection right away.
     def stop
-      Communist.server.respond_to?(:stop!) ? Communist.server.stop! : Communist.server.stop
+      if Communist.server.respond_to?(:shutdown)
+        Communist.server.shutdown
+      elsif Communist.server.respond_to?(:stop!)
+        Communist.server.stop!
+      else
+        Communist.server.stop
+      end
       @server_thread.join
     end
 
