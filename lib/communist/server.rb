@@ -43,7 +43,7 @@ module Communist
     end
 
     def host
-      Communist.server_host || "127.0.0.1"
+      Communist.server_host || DEFAULT_HOST
     end
 
     def responsive?
@@ -71,7 +71,7 @@ module Communist
           end
         end
 
-        Timeout.timeout(60) { @server_thread.join(0.1) until responsive? }
+        Timeout.timeout(DEFAULT_TIMEOUT) { @server_thread.join(0.1) until responsive? }
       end
     rescue TimeoutError
       raise ServerError, "Rack application timed out during start"
@@ -116,7 +116,7 @@ module Communist
   private
 
     def find_available_port
-      server = TCPServer.new('127.0.0.1', 0)
+      server = TCPServer.new(DEFAULT_HOST, 0)
       server.addr[Socket::Constants::SOCK_STREAM]
     ensure
       server.close if server
