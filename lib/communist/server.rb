@@ -7,6 +7,8 @@ require 'communist'
 module Communist
   class Server
 
+    include Communist::Const
+
     class ServerError < StandardError; end
 
     class Identify
@@ -33,11 +35,11 @@ module Communist
 
     def initialize(app, options={})
       @app  = app
-      @port = options[:port] || Communist.server_port
       @host = options[:host]
       @server_thread = nil
-      @port = Communist::Server.ports[@app.object_id]
-      @port = find_available_port
+      @port = options[:port] || Communist.server_port
+      @port ||= Communist::Server.ports[@app.object_id]
+      @port ||= find_available_port
     end
 
     def host
@@ -81,7 +83,7 @@ module Communist
     # Attempts to stop the server gracefully, otherwise
     # shuts current connection right away.
     def stop
-      server = Communist.servers[app.object_id]
+      server = Communist.servers.delete(app.object_id) { |s| NullServer.new }
       if Communist.server.respond_to?(:shutdown)
         server.shutdown
       elsif Communist.server.respond_to?(:stop!)

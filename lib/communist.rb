@@ -55,7 +55,9 @@ module Communist
 
   end
 
-  autoload :Server,   'communist/server'
+  autoload :Server,     'communist/server'
+  autoload :Const,      'communist/const'
+  autoload :NullServer, 'communist/null_server'
 
 end # Communist
 
