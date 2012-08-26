@@ -6,7 +6,7 @@ The Manifesto:
 >testing external API calls from command line applications. To meet this aim
 >the Communist employees Sinatra DSL for mocking server responses. The Communist
 >server receives requests from CLI and provides an API to respond to those
->requests. Canned answers/exectations have to provided upfront.
+>requests. Canned answers/expectations have to be provided upfront.
 
 ## Installation
 
