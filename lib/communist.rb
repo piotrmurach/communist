@@ -34,6 +34,12 @@ module Communist
       end
     end
 
+    # Stores server instances.
+    #
+    def servers
+      @servers ||= {}
+    end
+
     # By default run thin or fall back on webrick
     #
     def run_default_server(app, port, &block)

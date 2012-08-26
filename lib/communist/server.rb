@@ -64,7 +64,7 @@ module Communist
 
         @server_thread = Thread.new do
           Communist.run_default_server(Identify.new(app), port) do |server|
-            Communist.server = server
+            Communist.servers[app.object_id] = server
             trap "INT" do server.shutdown end
           end
         end
@@ -81,12 +81,13 @@ module Communist
     # Attempts to stop the server gracefully, otherwise
     # shuts current connection right away.
     def stop
+      server = Communist.servers[app.object_id]
       if Communist.server.respond_to?(:shutdown)
-        Communist.server.shutdown
+        server.shutdown
       elsif Communist.server.respond_to?(:stop!)
-        Communist.server.stop!
+        server.stop!
       else
-        Communist.server.stop
+        server.stop
       end
       @server_thread.join
     end
