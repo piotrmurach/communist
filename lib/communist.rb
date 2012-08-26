@@ -2,13 +2,21 @@ require 'communist/version'
 require 'rack'
 
 module Communist
+
+  class CommunistError < StandardError; end
+
   class << self
     attr_accessor :app_host
     attr_accessor :default_host
+    attr_accessor :server_host, :server_port
     attr_accessor :run_server
     attr_accessor :app
 
-    # Possible options
+    # Configure Communist options
+    #
+    #  Communist.configure do |config|
+    #    config.server_host = 'http://localhost'
+    #  end
     #
     def configure
       yield self
