@@ -33,12 +33,15 @@ module Communist
 
     def initialize(app, options={})
       @app  = app
+      @port = options[:port] || Communist.server_port
       @host = options[:host]
       @server_thread = nil
+      @port = Communist::Server.ports[@app.object_id]
+      @port = find_available_port
     end
 
     def host
-      "127.0.0.1"
+      Communist.server_host || "127.0.0.1"
     end
 
     def responsive?
@@ -47,28 +50,26 @@ module Communist
       res = Net::HTTP.start(host, @port) { |http| http.get('/__identify__') }
 
       if res.is_a?(Net::HTTPSuccess) or res.is_a?(Net::HTTPRedirection)
-        return res.body == @app.object_id.to_s
+        return res.body == app.object_id.to_s
       end
     rescue Errno::ECONNREFUSED, Errno::EBADF
       return false
     end
 
     def start(&block)
-      if @app
-        @port = Server.ports[@app.object_id]
+      raise ArgumentError, 'app required' unless app
 
-        if not @port or not responsive?
-          @port = find_available_port
-          Server.ports[@pp.object_id] = @port
+      unless responsive?
+        Communist::Server.ports[app.object_id] = port
 
-          @server_thread = Thread.new do
-            Communist.run_default_server(Identify.new(app), @port) do |server|
-              Communist.server = server
-            end
+        @server_thread = Thread.new do
+          Communist.run_default_server(Identify.new(app), port) do |server|
+            Communist.server = server
+            trap "INT" do server.shutdown end
           end
-
-          Timeout.timeout(5) { @server_thread.join(0.1) until responsive? }
         end
+
+        Timeout.timeout(60) { @server_thread.join(0.1) until responsive? }
       end
     rescue TimeoutError
       raise ServerError, "Rack application timed out during start"
@@ -92,6 +93,7 @@ module Communist
 
     def self.run(&block)
       app = Sinatra.new do
+        set :show_exceptions, true
         set :environment, :test
         disable :protection
 
