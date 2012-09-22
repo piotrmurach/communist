@@ -3,6 +3,7 @@ require 'thread'
 require 'sinatra/base'
 require 'net/http'
 require 'communist'
+require 'json'
 
 module Communist
   class Server
@@ -105,6 +106,13 @@ module Communist
           def body(value=nil)
             super
             nil
+          end
+        end
+
+        after do
+          if !response.body.empty?
+            content_type :json
+            body JSON.generate(response.body)
           end
         end
       end

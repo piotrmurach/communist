@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Communist::VERSION
 
   gem.add_dependency 'rack'
+  gem.add_dependency 'json'
   gem.add_dependency 'sinatra'
 
   gem.add_development_dependency 'rspec'

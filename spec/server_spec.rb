@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Communist::Server do
 
-  let(:app) { proc { |env| [200, {}, "Hello Server!"] } }
+  let(:app) { proc { |env| [200, {'Content-Length' => '13'}, "Hello Server!"] } }
 
   context 'initialization' do
     it 'sets application' do
