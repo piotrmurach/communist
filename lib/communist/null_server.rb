@@ -7,6 +7,8 @@ module Communist
     def method_missing(*)
       return nil
     end
+
+    def nil?; true; end
   end
 
 end # Communist
