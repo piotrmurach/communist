@@ -51,6 +51,22 @@ Scenario: Get blob
   Then the exit status should be 0
 ```
 
+Further, by including `aruba` cucumber steps and using `sinatra` dsl you can easily describe canned responses:
+
+```ruby
+Scenario: List watchers
+  Given the GitHub API server:
+  """
+  get('/repos/wycats/thor/subscribers') {
+    body :login => 'octokit', :id => 1,
+          :url => 'https://api.github.com/users/peter-murach'
+    status 200
+  }
+  """
+  When I successfully run `gcli watch ls wycats thor`
+  Then the stdout should contain "octokit"
+```
+
 ## Contributing
 
 1. Fork it
