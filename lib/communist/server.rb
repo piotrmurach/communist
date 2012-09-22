@@ -67,7 +67,6 @@ module Communist
         @server_thread = Thread.new do
           Communist.run_default_server(Identify.new(app), port) do |server|
             Communist.servers[app.object_id] = server
-            trap "INT" do server.shutdown end
           end
         end
 
