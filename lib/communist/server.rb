@@ -107,6 +107,11 @@ module Communist
             super
             nil
           end
+
+          def json(value)
+            content_type :json
+            JSON.generate value
+          end
         end
 
         after do
