@@ -1,7 +1,8 @@
 # Communist
-[![Gem Version](https://badge.fury.io/rb/communist.png)](http://badge.fury.io/rb/communist) [![Build Status](https://secure.travis-ci.org/peter-murach/commmunist.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/peter-murach/communist.png?travis)]
+[![Gem Version](https://badge.fury.io/rb/communist.png)](http://badge.fury.io/rb/communist) [![Build Status](https://secure.travis-ci.org/peter-murach/commmunist.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/peter-murach/communist.png?travis)][gemnasium]
 
 [travis]: http://travis-ci.org/peter-murach/communist
+[gemnasium]: https://gemnasium.com/peter-murach/communist
 
 The Manifesto:
 
