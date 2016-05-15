@@ -1,6 +1,6 @@
 # Communist
 [![Gem Version](https://badge.fury.io/rb/communist.svg)][gem]
-[![Build Status](https://secure.travis-ci.org/piotrmurach/commmunist.svg?branch=master)][travis]
+[![Build Status](https://secure.travis-ci.org/piotrmurach/communist.svg?branch=master)][travis]
 [![Dependency Status](https://gemnasium.com/piotrmurach/communist.svg?travis)][gemnasium]
 [![Inline docs](http://inch-ci.org/github/piotrmurach/tty-command.svg?branch=master)][inchpages]
 
