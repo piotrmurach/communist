@@ -1,16 +1,21 @@
 # Communist
-[![Gem Version](https://badge.fury.io/rb/communist.png)](http://badge.fury.io/rb/communist) [![Build Status](https://secure.travis-ci.org/peter-murach/commmunist.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/peter-murach/communist.png?travis)][gemnasium]
+[![Gem Version](https://badge.fury.io/rb/communist.png)][gem]
+[![Build Status](https://secure.travis-ci.org/piotrmurach/commmunist.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/piotrmurach/communist.png?travis)][gemnasium]
+[![Inline docs](http://inch-ci.org/github/piotrmurach/tty-command.svg?branch=master)][inchpages]
 
-[travis]: http://travis-ci.org/peter-murach/communist
-[gemnasium]: https://gemnasium.com/peter-murach/communist
+[gem]: http://badge.fury.io/rb/communist
+[travis]: http://travis-ci.org/piotrmurach/communist
+[gemnasium]: https://gemnasium.com/piotrmurach/communist
+[inchpages]: http://inch-ci.org/github/piotrmurach/communist
 
 The Manifesto:
 
->It is Communist prime role to serve community by providing Cucumber steps for
->testing external API calls from command line applications. To meet this aim
->the Communist employees Sinatra DSL for mocking server responses. The Communist
->server receives requests from CLI and provides an API to respond to those
->requests. Canned answers/expectations have to be provided upfront.
+> It is Communist prime role to serve community by providing Cucumber steps for
+> testing external API calls from command line applications. To meet this aim
+> the Communist employees Sinatra DSL for mocking server responses. The Communist
+> server receives requests from CLI and provides an API to respond to those
+> requests. Canned answers/expectations have to be provided upfront.
 
 ## Installation
 
@@ -63,7 +68,7 @@ Scenario: List watchers
   """
   get('/repos/wycats/thor/subscribers') {
     body :login => 'octokit', :id => 1,
-          :url => 'https://api.github.com/users/peter-murach'
+          :url => 'https://api.github.com/users/piotrmurach'
     status 200
   }
   """
@@ -79,6 +84,10 @@ Scenario: List watchers
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
 ## Copyright
 
-Copyright (c) 2012 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2012-2016 Piotr Murach. See LICENSE for further details.
